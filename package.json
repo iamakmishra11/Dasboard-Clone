@@ -2,16 +2,15 @@
   "name": "dashboard-clone",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "homepage": "https://iamakmishra11.github.io/Dashboard-Clone",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
-  {"homepage": "https://iamakmishra11.github.io/Dashboard-Clone"},
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
