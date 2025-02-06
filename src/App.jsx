@@ -3,7 +3,6 @@ import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import ProductTable from "./components/ProductTable";
 import "./App.css"; // Import App.css here
- 
 
 const App = () => {
   return (

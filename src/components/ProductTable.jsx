@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faSync } from "@fortawesome/free-solid-svg-icons";
 
 const ProductTable = () => {
   const [products, setProducts] = useState([
@@ -10,6 +12,8 @@ const ProductTable = () => {
     { image: "📱", name: "ABCD app test", category: "Application", commissionType: "VARIABLE", commissionValue: "3%", label: "AECD", status: false },
   ]);
 
+  const [editIndex, setEditIndex] = useState(null);
+
   const toggleStatus = (index) => {
     const updatedProducts = [...products];
     updatedProducts[index].status = !updatedProducts[index].status;
@@ -17,7 +21,6 @@ const ProductTable = () => {
   };
 
   const refreshProducts = () => {
-    // Simulate a refresh by resetting the products to their initial state
     setProducts([
       { image: "💰", name: "Personal Loan", category: "Personal Loan", commissionType: "VARIABLE", commissionValue: "5%", label: "Popular", status: true },
       { image: "🏠", name: "Home Loan", category: "Home Loan", commissionType: "VARIABLE", commissionValue: "7%", label: "", status: true },
@@ -33,13 +36,26 @@ const ProductTable = () => {
     setProducts([...products, newProduct]);
   };
 
+  const deleteProduct = (index) => {
+    const updatedProducts = products.filter((_, i) => i !== index);
+    setProducts(updatedProducts);
+    setEditIndex(null); // Close the delete option after deletion
+  };
+
+  const handleEditClick = (index) => {
+    setEditIndex(editIndex === index ? null : index);
+  };
+
   return (
     <div className="p-4 w-full">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Products</h1>
-        <div>
-          <button className="bg-red-500 text-white px-4 py-1 rounded mr-2" onClick={refreshProducts}>Refresh</button>
-          <button className="bg-red-500 text-white px-4 py-1 rounded" onClick={addProduct}>Add Product</button>
+      <div className="flex justify-end items-center mb-4">
+        <div className="flex items-center">
+          <button className="bg-red-500 text-white px-4 py-1 rounded mr-2 flex items-center" onClick={refreshProducts}>
+            <FontAwesomeIcon icon={faSync} className="mr-2" /> Refresh
+          </button>
+          <button className="bg-red-500 text-white px-4 py-1 rounded flex items-center" onClick={addProduct}>
+            <FontAwesomeIcon icon={faPlus} className="mr-2" /> Add Product
+          </button>
         </div>
       </div>
       <table className="w-full border-collapse border border-gray-200">
@@ -84,7 +100,14 @@ const ProductTable = () => {
                   </span>
                 </button>
               </td>
-              <td className="border border-gray-200 p-2">✏️</td>
+              <td className="border border-gray-200 p-2 relative">
+                <button onClick={() => handleEditClick(index)}>✏️</button>
+                {editIndex === index && (
+                  <button className="text-red-500 ml-2" onClick={() => deleteProduct(index)}>
+                    🗑️ Delete
+                  </button>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>
