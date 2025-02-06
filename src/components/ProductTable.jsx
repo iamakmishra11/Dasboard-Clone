@@ -2,12 +2,12 @@ import React, { useState } from "react";
 
 const ProductTable = () => {
   const [products, setProducts] = useState([
-    {  image: "💰", name: "Personal Loan", category: "Personal Loan", commissionType: "VARIABLE", commissionValue: "5%", label: "Popular", status: true },
-    {  image: "🏠", name: "Home Loan", category: "Home Loan", commissionType: "VARIABLE", commissionValue: "7%", label: "", status: true },
-    { image: "💼",name: "Business Loan", category: "Business Loan", commissionType: "VARIABLE", commissionValue: "2%", label: "", status: true },
+    { image: "💰", name: "Personal Loan", category: "Personal Loan", commissionType: "VARIABLE", commissionValue: "5%", label: "Popular", status: true },
+    { image: "🏠", name: "Home Loan", category: "Home Loan", commissionType: "VARIABLE", commissionValue: "7%", label: "", status: true },
+    { image: "💼", name: "Business Loan", category: "Business Loan", commissionType: "VARIABLE", commissionValue: "2%", label: "", status: true },
     { image: "💳", name: "Credit Card", category: "Credit Card", commissionType: "FIXED", commissionValue: "₹150", label: "", status: true },
     { image: "📱", name: "ABCD app", category: "Application", commissionType: "FIXED", commissionValue: "₹50", label: "Earn more", status: true },
-    { image: "📱",name: "ABCD app test", category: "Application", commissionType: "VARIABLE", commissionValue: "3%", label: "AECD", status: false },
+    { image: "📱", name: "ABCD app test", category: "Application", commissionType: "VARIABLE", commissionValue: "3%", label: "AECD", status: false },
   ]);
 
   const toggleStatus = (index) => {
@@ -16,13 +16,30 @@ const ProductTable = () => {
     setProducts(updatedProducts);
   };
 
+  const refreshProducts = () => {
+    // Simulate a refresh by resetting the products to their initial state
+    setProducts([
+      { image: "💰", name: "Personal Loan", category: "Personal Loan", commissionType: "VARIABLE", commissionValue: "5%", label: "Popular", status: true },
+      { image: "🏠", name: "Home Loan", category: "Home Loan", commissionType: "VARIABLE", commissionValue: "7%", label: "", status: true },
+      { image: "💼", name: "Business Loan", category: "Business Loan", commissionType: "VARIABLE", commissionValue: "2%", label: "", status: true },
+      { image: "💳", name: "Credit Card", category: "Credit Card", commissionType: "FIXED", commissionValue: "₹150", label: "", status: true },
+      { image: "📱", name: "ABCD app", category: "Application", commissionType: "FIXED", commissionValue: "₹50", label: "Earn more", status: true },
+      { image: "📱", name: "ABCD app test", category: "Application", commissionType: "VARIABLE", commissionValue: "3%", label: "AECD", status: false },
+    ]);
+  };
+
+  const addProduct = () => {
+    const newProduct = { image: "🆕", name: "New Product", category: "New Category", commissionType: "VARIABLE", commissionValue: "0%", label: "", status: true };
+    setProducts([...products, newProduct]);
+  };
+
   return (
     <div className="p-4 w-full">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold"></h1>
+        <h1 className="text-2xl font-bold">Products</h1>
         <div>
-          <button className="bg-red-500 text-white px-4 py-1 rounded mr-2"> Refresh</button>
-          <button className="bg-red-500 text-white px-4 py-1 rounded">Add Product</button>
+          <button className="bg-red-500 text-white px-4 py-1 rounded mr-2" onClick={refreshProducts}>Refresh</button>
+          <button className="bg-red-500 text-white px-4 py-1 rounded" onClick={addProduct}>Add Product</button>
         </div>
       </div>
       <table className="w-full border-collapse border border-gray-200">
