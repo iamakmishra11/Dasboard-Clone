@@ -2,7 +2,7 @@ import React from "react";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import ProductTable from "./components/ProductTable";
-import "./App.css"; // Import App.css here
+import "./App.css";
 
 const App = () => {
   return (
